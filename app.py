@@ -306,7 +306,7 @@ def reset_token(token):
             return redirect("/reset_password/" + token)
 
         # Update user's password
-        db.execute("UPDATE users SET hash = ? WHERE id = ?", generate_password_hash(password), session["user_id"])
+        db.execute("UPDATE users SET hash = ? WHERE id = ?", generate_password_hash(password), user_id["id"])
 
         # Make sure flashed doesnt get deleted
         get_flashed_messages(with_categories=True)
