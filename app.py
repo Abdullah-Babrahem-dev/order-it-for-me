@@ -40,7 +40,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:////home/AbdullahXCraft/order-it-for-me/orders.db")
+# db = SQL("sqlite:////home/AbdullahXCraft/order-it-for-me/orders.db")
+db = SQL("mysql://AbdullahXCraft:12Aboodi12@AbdullahXCraft.mysql.pythonanywhere-services.com/AbdullahXCraft$orders")
 
 @app.after_request
 def after_request(response):

@@ -32,7 +32,7 @@ def encode(payload):
 
 # Check if deadline has passed
 def had_finished(deadline):
-    totime = datetime.strptime(deadline, "%Y-%m-%d %H:%M") - datetime.now()
+    totime = deadline - datetime.now()
     if totime.total_seconds() <= 0:
         return True
     else:
