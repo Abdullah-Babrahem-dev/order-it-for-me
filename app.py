@@ -462,6 +462,13 @@ def new_request(token):
 
     # User reached route via POST
     if request.method == "POST":
+        
+        # Ensure valid token
+        try:
+            jwt.decode(token, "SECRET", algorithms="HS256")
+        except:
+            flash("Invalid token", "danger")
+            return redirect("/")
 
         # Get form input
         prod_name = request.form.get("prod_name").lower().capitalize()
@@ -523,6 +530,12 @@ def new_request(token):
 
     # User reached route via GET
     else:
+
+        try:
+            jwt.decode(token, "SECRET", algorithms="HS256")
+        except:
+            flash("Invalid token", "danger")
+            return redirect("/")
 
         # Get order info
         order = db.execute("SELECT web_name, username FROM orders JOIN users ON users.id = orders.owner_id WHERE orders.id = ?", jwt.decode(token, "SECRET", algorithms="HS256")["id"])[0]
