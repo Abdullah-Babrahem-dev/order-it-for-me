@@ -192,6 +192,7 @@ def register():
         )
 
         # Log In the user
+        session["user_username"] = db.execute("SELECT username FROM users WHERE id = ?", id)[0]['username']
         session["user_id"] = id
 
         # Redirect user to home page
